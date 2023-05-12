@@ -29,7 +29,7 @@ try:
   from rabbitvcs.util.contextmenu import MenuBuilder, MainContextMenu, MainContextMenuCallbacks
   import rabbitvcs.services.checkerservice
 except Exception as e:
-  print("RabbitVCS: {}".format(e))
+  print(f"RabbitVCS: {e}")
   exit(1)
 
 class DCSender:
@@ -70,8 +70,7 @@ class DCContextMenu(MenuBuilder):
   def attach_submenu(self, menu_node, submenu_list):
     menu_node.menu = []
     menu_node.identifier = ""
-    for item in submenu_list:
-      menu_node.menu.append(item)
+    menu_node.menu.extend(iter(submenu_list))
 
   def top_level_menu(self, items):
     return items
